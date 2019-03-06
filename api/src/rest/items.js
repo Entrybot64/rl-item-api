@@ -1,5 +1,7 @@
 import { Router } from 'express'
 import Item from '../mongoose/models/Item'
+import fs from 'fs'
+import path from 'path'
 
 export default () => {
 	let api = Router()
@@ -132,6 +134,29 @@ export default () => {
 			.exec(function(err, docs) {
 				res.json(docs)
 			})
+	})
+
+	api.get('/image/:size/:url.jpg', (req, res) => {
+		if (['large', 'small'].includes(req.params.size)) {
+			Item.findOne({ url: req.params.value })
+				.lean()
+				.exec(function(err, docs) {
+					fs.readFile(
+						path.resolve(`images/${req.params.size}/${req.params.url}.jpg`),
+						(err, data) => {
+							if (err) {
+								console.log(err)
+								res.sendStatus(500)
+							} else {
+								//res.type('image/jpg')
+								res.end(data)
+							}
+						}
+					)
+				})
+		} else {
+			res.sendStatus(400)
+		}
 	})
 
 	return api

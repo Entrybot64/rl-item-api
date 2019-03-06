@@ -1,6 +1,5 @@
 const Item = `
 	type Item {
-		_id: String
 		name: String!
 		url: String
 		type: String
