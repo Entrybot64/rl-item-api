@@ -1,6 +1,6 @@
 # rl-item-api
 
-An api that exposes REST and GraphQL methods to query images and information from Rocket League items.
+A self-hostable API for querying items in Rocket League. Has both REST and GraphQL API's and serves item images.
 
 ## .env file
 
