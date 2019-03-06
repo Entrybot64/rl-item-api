@@ -2,11 +2,13 @@ import express from 'express'
 import cors from 'cors'
 import fs from 'fs'
 
+import dlog from '../../utils/dlog'
+
 import dotenv from 'dotenv'
 
 //	Generate .env file if it doesn't exist
 if (!fs.existsSync(`.env`)) {
-	console.log('File .env not found, generating from example')
+	dlog('File .env not found, generating from example')
 	fs.copyFileSync(`.env.example`, `.env`)
 }
 
@@ -28,7 +30,7 @@ let setPort = (port = process.env.PORT) => {
 let listen = () => {
 	const port = app.get('port') || process.env.PORT
 	app.listen(port, () => {
-		console.log(`Listening on http://${process.env.DOMAIN}:${process.env.PORT}`)
+		dlog(`Listening on http://${process.env.DOMAIN}:${process.env.PORT}`)
 	})
 }
 

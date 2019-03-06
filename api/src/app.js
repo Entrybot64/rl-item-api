@@ -5,6 +5,7 @@ import Item from './mongoose/models/Item'
 import itemSeeds from './mongoose/seeds/Items.json'
 
 import seed from './seed'
+import dlog from '../../utils/dlog'
 
 import rest from './rest'
 import graphql from './graphql'
@@ -18,7 +19,7 @@ if (!fs.existsSync(path.resolve(`images`))) {
 	decompress('images.zip', './', {
 		plugins: [decompressUnzip()]
 	}).then(() => {
-		console.info('Images Decompressed')
+		dlog('Images Decompressed')
 	})
 }
 
@@ -37,7 +38,7 @@ database()
 	})
 	.catch((reason) => {
 		//	Close the server on database error
-		console.error(reason)
+		dlog(reason)
 		process.exit(1)
 	})
 

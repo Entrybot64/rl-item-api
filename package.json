@@ -4,7 +4,7 @@
 	"description": "The RL Item API",
 	"main": "index.js",
 	"scripts": {
-		"start": "nodemon api/src/app.js --exec babel-node --config-gile api/.babelrc"
+		"start": "nodemon api/src/app.js --exec babel-node"
 	},
 	"repository": {
 		"type": "git",
