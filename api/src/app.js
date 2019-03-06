@@ -9,6 +9,19 @@ import seed from './seed'
 import rest from './rest'
 import graphql from './graphql'
 
+import decompress from 'decompress'
+import decompressUnzip from 'decompress-unzip'
+import fs from 'fs'
+import path from 'path'
+
+if (!fs.existsSync(path.resolve(`images`))) {
+	decompress('images.zip', './', {
+		plugins: [decompressUnzip()]
+	}).then(() => {
+		console.info('Images Decompressed')
+	})
+}
+
 //	Connect to the database and start the server inside the Promise
 database()
 	.then((db) => {
